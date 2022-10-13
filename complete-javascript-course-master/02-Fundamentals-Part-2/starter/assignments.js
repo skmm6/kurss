@@ -454,8 +454,36 @@ console.log(`ИМТ ${Marks.bmi > Johns.bmi ? Marks.name + Marks.bmi : Johns.nam
 
 console.log(`++++++++++++++++++quest 7+++++++++++++`)
 // ЦИКЛЫ=================================================ЦИКЛЫ========================
-*/
+
 
 for (let num = 1; num <= 50; num++) {
     console.log(`Изберательный номер ${num} в данный момент голосует`);
 }
+
+// ==================ЛЕКЦИЯ: Циклические массивы, Разрыв и продолжение
+
+
+const populations = [160, 1441, 6, 30];
+const percentages2 = [];
+
+function percentageOfWorld1(population){
+    return population / 7900 * 100;
+}
+
+for(i = 0; i < populations.length; i++){
+    percentages2.push(percentageOfWorld1(populations[i]))
+}
+
+console.log(percentages2);
+
+const percentages = [
+    percentageOfWorld1(populations[0]), 
+    percentageOfWorld1(populations[1]), 
+    percentageOfWorld1(populations[2]), 
+    percentageOfWorld1(populations[3])
+]
+
+console.log(`log 2
+${percentages}
+`);
+*/
