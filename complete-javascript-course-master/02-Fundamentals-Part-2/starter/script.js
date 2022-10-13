@@ -270,4 +270,19 @@ console.log(jonas.age);
 
 console.log(jonas.getSummary());
 
+
+// ======================== ЦИКЛЫ ============================
+// console.log('Lifting wights repetition 1 🏋️');
+// console.log('Lifting wights repetition 2 🏋️');
+// console.log('Lifting wights repetition 3 🏋️');
+// console.log('Lifting wights repetition 4 🏋️');
+// console.log('Lifting wights repetition 5 🏋️');
+// console.log('Lifting wights repetition 6 🏋️');
+
+
+// for loop keeps running while condition is TRUE
+for(let rep = 1; rep <= 30; rep++) {
+    console.log(`Lifting wights repetition ${rep} 🏋️`);
+}
+
 */

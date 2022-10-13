@@ -418,7 +418,8 @@ console.log(myCountry.describe());
 console.log(myCountry.checkIsland());
 console.log(myCountry);
 
-*/
+console.log(`++++++++++++++++++quest 7+++++++++++++`)
+
 
 const Marks = {
     name: 'Mark Miller',
@@ -450,3 +451,11 @@ Marks.calcBMI());
 
 
 console.log(`ИМТ ${Marks.bmi > Johns.bmi ? Marks.name + Marks.bmi : Johns.name + Johns.bmi} выше чем у ${Marks.bmi < Johns.bmi ? Marks.name + Marks.bmi : Johns.name + Johns.bmi}`);
+
+console.log(`++++++++++++++++++quest 7+++++++++++++`)
+// ЦИКЛЫ=================================================ЦИКЛЫ========================
+*/
+
+for (let num = 1; num <= 50; num++) {
+    console.log(`Изберательный номер ${num} в данный момент голосует`);
+}
