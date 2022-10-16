@@ -486,4 +486,41 @@ const percentages = [
 console.log(`log 2
 ${percentages}
 `);
+// const populations = [10, 1441, 332, 83];
+//  const percentages2 = [];
+//  for (let i = 0; i < populations.length; i++) {
+//  const perc = percentageOfWorld1(populations[i]);
+//  percentages2.push(perc);
+//  }
+//  console.log(percentages2);
+
+const listOfNeighbours = [
+    ['Canada', 'Mexico'], 
+    ['Spain'], 
+    ['Norway', 'Sweden', 'Russia']
+];
+
+for (i = 0; i < listOfNeighbours.length; i++) {
+    for (y = 0; y < listOfNeighbours[i].length; y++) {
+        console.log(`Сосед: ${listOfNeighbours[i] [y]}`);
+    }
+}
+
+// ЛЕКЦИЯ: Цикл while
 */
+
+const populations = [160, 1441, 6, 30];
+const percentages3 = [];
+
+function percentageOfWorld1(population){
+    return population / 7900 * 100;
+}
+
+let i = 0;
+
+while(i < populations.length) {
+    percentages3.push(percentageOfWorld1(populations[i]))
+    i++
+}
+
+console.log(percentages3);
