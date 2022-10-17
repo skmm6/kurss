@@ -507,7 +507,7 @@ for (i = 0; i < listOfNeighbours.length; i++) {
 }
 
 // ЛЕКЦИЯ: Цикл while
-*/
+
 
 const populations = [160, 1441, 6, 30];
 const percentages3 = [];
@@ -524,3 +524,37 @@ while(i < populations.length) {
 }
 
 console.log(percentages3);
+
+// ================Coding Challenge #4==========================
+
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+const tips = [];
+const totals = [];
+
+
+const calcTip = bill => {
+    return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+}
+
+for (let i = 0; i < bills.length; i ++) {
+    const tip = calcTip(bills[i]);
+    tips.push(tip);
+    const total = tip + bills[i]
+    totals.push(total)
+}
+
+console.log(bills);
+console.log(tips);
+console.log(totals);
+
+const calcAverage = function(arr) {
+    let sum = 0;
+    for (i = 0; i < arr.length; i++) {
+        sum += arr[i];
+    }
+    
+    console.log(`Среднее значение: ${sum / arr.length}, sum: ${sum}`);
+}
+
+calcAverage(totals);
+*/
