@@ -78,7 +78,7 @@ const calcTempAmplitudeNew = function (t1, t2) {
 
 const amplitudeNew = calcTempAmplitudeNew([3, 5, 1], [9, 0, 5]);
 console.log(amplitudeNew);
-*/
+
 
 const measureKelvin = function () {
   const measurement = {
@@ -128,3 +128,46 @@ const calcTempAmplitudeBug = function (t1, t2) {
 const amplitudeBug = calcTempAmplitudeBug([3, 5, 1], [9, 4, 5]);
 //  A) identyfy
 console.log(amplitudeBug);
+
+
+const data1 = [17, 21, 23];
+const data2 = [12, 5, -5, 0, 4];
+
+// TODO вариант мой
+// const printForecast = function (arr) {
+//   const strings = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     const string = `${arr[i]}ºC через ${i + 1} день`;
+//     strings.push(string);
+//   }
+//   return strings.join('...');
+// };
+
+// TODO вариант второй
+const printForecast = function (arr) {
+  let strings = '';
+  for (let i = 0; i < arr.length; i++) {
+    strings += `${arr[i]}ºC через ${i + 1} день ... `;
+  }
+  console.log('...' + strings);
+};
+
+printForecast(data1);
+*/
+
+// var countSheep = function (num) {
+//   let str = '';
+//   for (let i = 1; i <= num; i++) {
+//     str += `${i} sheep...`;
+//   }
+//   return str;
+// };
+
+// console.log(countSheep(0));
+
+const data = ['hay', 'junk', 'hay', 'hay', 'moreJunk', 'needle', 'randomJunk'];
+function findNeedle(haystack) {
+  return 'found the needle at position ' + haystack.indexOf('needle');
+}
+
+console.log(findNeedle(data));
