@@ -153,7 +153,7 @@ const printForecast = function (arr) {
 };
 
 printForecast(data1);
-*/
+
 
 // var countSheep = function (num) {
 //   let str = '';
@@ -171,3 +171,24 @@ function findNeedle(haystack) {
 }
 
 console.log(findNeedle(data));
+
+
+function sumMix(x) {
+  let summ = 0;
+  for (let i = 0; i < x.length; i++) {
+    summ += Number(x[i]);
+  }
+  return Number(summ);
+}
+console.log(typeof 3);
+console.log(typeof '3');
+const arr = [12, 3, 2, 9, '1', 3];
+
+console.log(sumMix(arr));
+*/
+function descendingOrder(n) {
+  console.log(parseInt(String(n).split('').sort().reverse().join('')));
+  return parseInt(String(n).split('').sort().reverse().join(''));
+}
+
+descendingOrder(67453298532764213);
