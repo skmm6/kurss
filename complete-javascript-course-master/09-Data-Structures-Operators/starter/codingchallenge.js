@@ -1,4 +1,33 @@
 'use strict';
+
+// КОДИНГ ЧЕЛЕНДЖ 4 ===================================
+// document.body.append(document.createElement('textarea'));
+// document.body.append(document.createElement('button'));
+
+// // underscore_case
+// // first_name
+// // Some_Variable
+// //  calculate_AGE
+// // delayed_departure
+// const camelCase = function (string) {
+//   // console.log(string);
+//   console.log(string.toLowerCase());
+// };
+// document.querySelector('button').addEventListener('click', () => {
+//   const text = document.querySelector('textarea').value;
+//   camelCase(text);
+//   const rows = text.split('\n');
+//   // console.log(rows);
+//   for (const [i, row] of rows.entries()) {
+//     const [row1, row2] = row.toLowerCase().trim().split('_');
+//     // console.log(row1, row2);
+//     const output = `${row1}${row2.replace(row2[0], row2[0].toUpperCase())}`;
+//     console.log(`${output.padEnd(30)}${'✅'.repeat(i + 1)}`);
+//   }
+// });
+
+// КОДИНГ ЧЕЛЕНДЖ 4 ===================================
+
 /*
 // coding challenge #1
 // const game = {
@@ -73,8 +102,6 @@ for (const [time, event] of gameEvents)
   console.log(
     `${time <= 45 ? '[ПЕРВЫЙ ТАЙМ]' : '[ВТОРОЙ ТАЙМ]'} ${time}: ${event}`
   );
-// КОДИНГ ЧЕЛЕНДЖ 3 ===================================
-
 
 // for (const name of game.scored) {
 //   console.log(`Гол ${i + 1}: ${name}`);
