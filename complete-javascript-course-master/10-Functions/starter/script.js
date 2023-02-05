@@ -323,7 +323,7 @@ booker();
 booker();
 
 console.dir(booker);
-*/
+
 
 // exampl 1
 let f;
@@ -369,3 +369,14 @@ boardPassenger(180, 3);
 // setTimeout(function () {
 //   console.log('TIMER');
 // }, 1000);
+
+*/
+// coding CHL #2 ======================================================
+// (function () {
+//   const header = document.querySelector('h1');
+//   header.style.color = 'red';
+//   window.addEventListener('click', () => {
+//     header.style.color = 'blue';
+//   });
+// })();
+// coding CHL #2 ======================================================
