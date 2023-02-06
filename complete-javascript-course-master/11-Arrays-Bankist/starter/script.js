@@ -61,6 +61,27 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = '';
+  // .textContent = 0
+
+  movements.forEach(function (mov, i) {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+
+    const html = `
+    <div class="movements__row">
+      <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
+      <div class="movements__value">${mov}</div>
+    </div>
+    `;
+
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+displayMovements(account1.movements);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -71,7 +92,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 //   ['GBP', 'Pound sterling'],
 // ]);
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 /*
@@ -144,7 +165,7 @@ movements.forEach(function (mov, i, arr) {
 //  0: fucnction(200)
 //  1: fucnction(450)
 //  2: fucnction(400)
-*/
+
 
 // map
 const currencies = new Map([
@@ -163,3 +184,58 @@ console.log(currenciesUnique);
 currenciesUnique.forEach(function (value, _, map) {
   console.log(`${value}: ${value}`);
 });
+
+
+// ////////////////////////////////////
+// Coding Challenge #1
+
+// const juliaData = [3, 5, 2, 12, 7];
+// const kateData = [4, 1, 15, 8, 3];
+
+// const juliaData2 = [9, 16, 6, 8, 3];
+// const kateData2 = [10, 5, 6, 1, 4];
+
+const checkDogs = function (dogsJulia, dogsKate) {
+  const dogsJuliaCorrect = dogsJulia.slice();
+  dogsJuliaCorrect.splice(0, 1);
+  dogsJuliaCorrect.splice(-2);
+  // dogsJulia.splice(1,3)
+  const dogs = dogsJuliaCorrect.concat(dogsKate);
+  console.log(dogs);
+
+  dogs.forEach(function (dog, i) {
+    if (dog >= 3) {
+      console.log(`Собака номер ${i + 1}
+    - взрослая, ей ${dog} лет`);
+    } else {
+      console.log(`Собака номер ${i + 1}
+    - все еще щенок`);
+    }
+  });
+};
+checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
+// checkDogs(juliaData, kateData);
+// checkDogs(juliaData2, kateData2);
+*/
+
+const eurToUsd = 1.1;
+
+// const movementsUSD = movements.map(function (mov) {
+//   return mov * eurToUsd;
+// });
+
+const movementUSD = movements.map(mov => mov * eurToUsd);
+
+console.log(movements);
+console.log(movementUSD);
+
+const movementsUSDfor = [];
+for (const mov of movements) movementsUSDfor.push(mov * eurToUsd);
+console.log(movementsUSDfor);
+
+const movementsDesc = movements.map(
+  (mov, i) =>
+    `Операция ${i + 1}: Ты ${mov > 0 ? 'положил' : 'снял'} ${Math.abs(mov)}`
+);
+console.log(movementsDesc);
