@@ -73,7 +73,7 @@ const displayMovements = function (movements) {
       <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-      <div class="movements__value">${mov}</div>
+      <div class="movements__value">${mov}€</div>
     </div>
     `;
 
@@ -81,6 +81,47 @@ const displayMovements = function (movements) {
   });
 };
 displayMovements(account1.movements);
+
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance}€`;
+};
+calcDisplayBalance(account1.movements);
+
+const calcDisplaySummary = function (movements) {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}€`;
+
+  const out = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(out)}€`;
+
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(deposit => (deposit * 1.2) / 100)
+    .filter((int, i, arr) => {
+      console.log(arr);
+      return int >= 1;
+    })
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${interest}€`;
+};
+calcDisplaySummary(account1.movements);
+
+const createUsernames = function (accs) {
+  accounts.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLocaleLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+
+createUsernames(accounts);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -217,7 +258,7 @@ checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
 // checkDogs(juliaData, kateData);
 // checkDogs(juliaData2, kateData2);
-*/
+
 
 const eurToUsd = 1.1;
 
@@ -239,3 +280,83 @@ const movementsDesc = movements.map(
     `Операция ${i + 1}: Ты ${mov > 0 ? 'положил' : 'снял'} ${Math.abs(mov)}`
 );
 console.log(movementsDesc);
+
+const deposits = movements.filter(function (mov) {
+  return mov > 0;
+});
+console.log(movements);
+console.log(deposits);
+
+const depositFor = [];
+for (const mov of movements) if (mov > 0) depositFor.push(mov);
+console.log(depositFor);
+
+const withdrawal = movements.filter(mov => mov < 0);
+console.log(withdrawal);
+
+
+console.log(movements);
+
+// accumulator - как снежынй ком
+// const balance = movements.reduce(function (acc, cur, i, arr) {
+//   console.log(`Итерация ${i}: ${acc}`);
+//   return acc + cur;
+// }, 0);
+
+const balance = movements.reduce((acc, cur) => acc + cur, 0);
+
+console.log(balance);
+
+let balance2 = 0;
+for (const mov of movements) balance2 += mov;
+console.log(balance2);
+
+// Максимульно  значение
+const max = movements.reduce(
+  (acc, mov) => (acc > mov ? acc : mov),
+  movements[0]
+);
+
+console.log(max);
+
+///////////////////////////////////////////
+//Coding Challenge #2
+
+const calcAverageHumanAge = function (dogAges) {
+  // 1.
+  const humanAge = dogAges.map(dogAge =>
+    dogAge <= 2 ? 2 * dogAge : 16 + dogAge * 4
+  );
+  // 2.
+  const humanAge18 = humanAge.filter(age => age >= 18);
+  // 3.
+  // const humanAgeAver =
+  //   humanAge18.reduce((acc, age) => acc + age, 0) / humanAge18.length;
+
+  const humanAgeAver = humanAge18.reduce(
+    (acc, age, i, arr) => acc + age / arr.length,
+    0
+  );
+
+  // 2 3. (2+3)/2 = 2.5. === 2/2+3/2 = 2.5
+
+  return humanAgeAver;
+};
+
+const avr1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+const avr2 = calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+
+console.log(avr1, avr2);
+*/
+const eurToUsd = 1.1;
+
+// PIPELINE
+const totalDepositsUSD = movements
+  .filter(mov => mov > 0)
+  .map((mov, i, arr) => {
+    // console.log(arr);
+    return mov * eurToUsd;
+  })
+  // .map(mov => mov * eurToUsd)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(totalDepositsUSD);
