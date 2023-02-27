@@ -56,3 +56,11 @@ console.log(jonas.species, matilda.species);
 
 console.log(jonas.hasOwnProperty('firstName'));
 console.log(jonas.hasOwnProperty('spacies'));
+
+//////////////////////////////////////////////////
+//211 Prototypal Inheritance on Built In Objects TODOTODOTODOTODOTODOTODO
+//////////////////////////////////////////////////
+console.log(jonas.__proto__);
+// object.prototype (top of prototype chain)
+console.log(jonas.__proto__.__proto__);
+console.log(jonas.__proto__.__proto__.__proto__);
