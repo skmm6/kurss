@@ -1,5 +1,5 @@
 'use strict';
-
+/*
 //////////////////////////////////////////////////
 //208 Constructor Functions and the new Operator TODOTODOTODOTODOTODOTODO
 //////////////////////////////////////////////////
@@ -64,3 +64,65 @@ console.log(jonas.__proto__);
 // object.prototype (top of prototype chain)
 console.log(jonas.__proto__.__proto__);
 console.log(jonas.__proto__.__proto__.__proto__);
+
+console.dir(Person.prototype.constructor);
+
+const arr = [
+  2, 6, 4, 5, 6, 9, 3, 3, 3, 3, 3, 3, 6, 11, 11, 12, 13, 12, 13, 15, 6, 2, 100,
+]; // new Array []
+console.log(arr.__proto__);
+console.log(arr.__proto__ === Array.prototype);
+
+console.log(arr.__proto__.__proto__);
+
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+};
+
+console.log(arr.unique());
+// не стоит этого делать :D
+
+const h1 = document.querySelector('h1');
+console.dir(x => x + 1);
+*/
+//////////////////////////////////////////////////
+//212 Coding Challenge #1 TODOTODOTODOTODOTODOTODO
+//////////////////////////////////////////////////
+
+const Car = function (make, speed) {
+  this.make = make;
+  this.speed = speed;
+};
+
+Car.prototype.accelerate = function () {
+  this.speed += 10;
+  console.log(`Машина: ${this.make} текущая скорость ${this.speed}`);
+};
+
+Car.prototype.brake = function () {
+  this.speed = this.speed - 5;
+  console.log(`Машина: ${this.make} текущая скорость ${this.speed}`);
+};
+
+const myCar = new Car('BMW', 120);
+console.log(myCar);
+myCar.accelerate();
+myCar.brake();
+myCar.brake();
+myCar.accelerate();
+
+const car2 = new Car('Mercedes', 95);
+car2.accelerate();
+car2.accelerate();
+car2.accelerate();
+car2.accelerate();
+car2.brake();
+car2.brake();
+car2.brake();
+car2.brake();
+car2.brake();
+car2.brake();
+car2.brake();
+car2.brake();
+car2.brake();
+car2.brake();
