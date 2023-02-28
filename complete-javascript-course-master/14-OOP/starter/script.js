@@ -1,5 +1,5 @@
 'use strict';
-/*
+
 //////////////////////////////////////////////////
 //208 Constructor Functions and the new Operator TODOTODOTODOTODOTODOTODO
 //////////////////////////////////////////////////
@@ -28,6 +28,12 @@ const jack = new Person('Jack', 1975);
 console.log(matilda, jack);
 
 console.log(jack instanceof Person);
+
+Person.hey = function () {
+  console.log('hey there 👌👌👌👌');
+  console.log(this);
+};
+Person.hey();
 
 //////////////////////////////////////////////////
 //209 Prototypes TODOTODOTODOTODOTODOTODO
@@ -84,7 +90,7 @@ console.log(arr.unique());
 
 const h1 = document.querySelector('h1');
 console.dir(x => x + 1);
-*/
+
 //////////////////////////////////////////////////
 //212 Coding Challenge #1 TODOTODOTODOTODOTODOTODO
 //////////////////////////////////////////////////
@@ -126,3 +132,104 @@ car2.brake();
 car2.brake();
 car2.brake();
 car2.brake();
+
+//////////////////////////////////////////////////
+//213 ES6 Classes TODOTODOTODOTODOTODOTODO
+//////////////////////////////////////////////////
+
+//  class expression
+// const PersonCl = class {};
+
+//  class declaration
+class PersonCl {
+  constructor(fullName, birtYear) {
+    this.fullName = fullName;
+    this.birtYear = birtYear;
+  }
+
+  // все экземапляры имен будут иметь свойство прототипа
+  //  methods will be added to .prototype property
+  calcAge() {
+    const data = new Date();
+    const years = data.getFullYear();
+    console.log(years - this.birtYear);
+  }
+
+  greet() {
+    console.log(`Привет ${this.firstName}`);
+  }
+
+  get age() {
+    const data = new Date();
+    const years = data.getFullYear();
+    return years - this.birtYear;
+  }
+
+  // каждый аз когда мы пытаемся установить свойство которые уе существует
+  set fullName(name) {
+    console.log(name);
+    if (name.includes(' ')) this._fullName = name;
+    else alert(`${name} не полное имя`);
+  }
+
+  get fullname() {
+    return this._fullName;
+  }
+
+  // Статический метод никто кроме класса не будут иметь доступ к прототипу
+  static hey() {
+    console.log('hey there 👌👌👌👌');
+    console.log(this);
+  }
+}
+
+const jessica = new PersonCl('Jessica Davis', 1996);
+console.log(jessica);
+const egor = new PersonCl('Egor', 2000);
+console.log(egor);
+
+egor.calcAge();
+console.log(jessica.__proto__ === PersonCl.prototype);
+
+// PersonCl.prototype.greet = function () {
+//   console.log(`Привет ${this.firstName}`);
+// };
+
+egor.greet();
+
+//  1. Classes are not hoisted (нельзя использовать пока не объявили то есть выше коа)
+// 2. Class are first-class citizes мы можем передавать их в функцию и возвращать из функции
+// 3. Classes всегда работают в строгом режиме.
+//////////////////////////////////////////////////
+//214 Setters and Getters TODOTODOTODOTODOTODOTODO
+//////////////////////////////////////////////////
+
+const walter = new PersonCl('Walter White', 1965);
+
+PersonCl.hey();
+
+//////////////////////////////////////////////////
+//214 Setters and GettersTODOTODOTODOTODOTODOTODO
+//////////////////////////////////////////////////
+const account = {
+  owner: 'Jonas',
+  movements: [200, 530, 120, 300],
+
+  get latest() {
+    return this.movements.slice(-1).pop();
+  },
+
+  set latest(mov) {
+    this.movements.push(mov);
+  },
+};
+
+console.log(account.latest);
+
+account.latest = 50;
+console.log(account);
+
+console.log(egor.age);
+//////////////////////////////////////////////////
+//215 Static Methods TODOTODOTODOTODOTODOTODO
+//////////////////////////////////////////////////
