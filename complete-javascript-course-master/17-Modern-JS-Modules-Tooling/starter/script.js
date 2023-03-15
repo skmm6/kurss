@@ -4,7 +4,7 @@
 // console.log(price, tq);
 
 console.log('Importing module');
-import shoppingCart from './shoppingCart.js';
+// import shoppingCart from './shoppingCart.js';
 // console.log(shippingCost);
 
 // import * as ShoppingCart from './shoppingCart.js';
@@ -15,7 +15,7 @@ import shoppingCart from './shoppingCart.js';
 // console.log(price);
 
 import add, { cart } from './shoppingCart.js';
-/*
+
 add('pizza', 5);
 add('pizza', 5);
 add('bread', 3);
@@ -28,13 +28,13 @@ console.log(cart);
 // const data = await res.json();
 // console.log(data);
 // console.log('Something');
+/*
+// const getLastPost = async function () {
+//   const res = await fetch('https://jsonplaceholder.typicode.com/posts');
+//   const data = await res.json();
 
-const getLastPost = async function () {
-  const res = await fetch('https://jsonplaceholder.typicode.com/posts');
-  const data = await res.json();
-
-  return { title: data.at(-1).title, text: data.at(-1).body };
-};
+//   return { title: data.at(-1).title, text: data.at(-1).body };
+// };
 
 const lastPost = getLastPost();
 console.log(lastPost);
@@ -95,7 +95,8 @@ console.log(ShoppingCart2.shippingCost);
 
 // 277 Introduction to NPM TODOTODOTODO
 
-import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
+// import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
+import cloneDeep from 'lodash-es';
 
 const state = {
   cart: [
@@ -111,3 +112,28 @@ state.user.loggedIn = false;
 console.log(stateClone);
 
 console.log(stateDeepClone);
+
+if (module.hot) {
+  module.hot.accept();
+}
+
+class Person {
+  greeting = 'hey';
+  constructor(name) {
+    this.name = name;
+    console.log(`${this.greeting}, ${this.name}`);
+  }
+}
+
+const jonas = new Person('Jonas');
+
+console.log('Jonas' ?? null);
+
+console.log(cart.find(el => el.quantity >= 2));
+Promise.resolve('TESt').then(x => console.log(x));
+
+import 'core-js/stable';
+// import 'core-js/stable/promise';
+
+// полифайлинг асинхронных функий
+import 'regenerator-runtime/runtime';
