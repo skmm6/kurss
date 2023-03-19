@@ -2,7 +2,9 @@ import * as model from './model.js';
 import recipeView from './views/recipeView.js';
 import searchView from './views/searchView';
 import resultsView from './views/resultsView.js';
+import bookmarksView from './views/bookmarksView.js';
 import paginationView from './views/paginationView.js';
+import addRecipeView from './views/addRecipeView.js';
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
@@ -28,12 +30,17 @@ const controlRecipes = async function () {
     // 0) обновить результаты что бы отметить выбранный актив
     resultsView.update(model.getSearchResultsPage());
 
-    //1) Загружаем рецепт
+    // 1) обновляем вид закладки
+    bookmarksView.update(model.state.bookmarks);
+
+    //2) Загружаем рецепт
     await model.loadRecipe(id);
-    //2) Отрисовываем рецепт (рендер)
+
+    //3) Отрисовываем рецепт (рендер)
     recipeView.render(model.state.recipe);
   } catch (err) {
     recipeView.renderError();
+    console.error(err);
   }
 };
 
@@ -77,20 +84,35 @@ const contolServings = function (newServings) {
 };
 
 const controlAddBookmark = function () {
-  console.log(model.state.recipe.bookmarked);
+  // 1) Добавить /удалить закладку
   if (!model.state.recipe.bookmarked) model.addBookmark(model.state.recipe);
   else model.deleteBookmark(model.state.recipe.id);
 
-  console.log(model.state.recipe);
-
+  // обновить представление рецепта
   recipeView.update(model.state.recipe);
+
+  // рендер закладки
+  bookmarksView.render(model.state.bookmarks);
+  console.log(model.state.bookmarks);
+};
+
+const controlBookmarks = function () {
+  bookmarksView.render(model.state.bookmarks);
+};
+
+const controlAddRecipe = function (newRecipe) {
+  console.log(newRecipe);
+
+  //  загрузить новые данные рецепта
 };
 
 const init = function () {
+  bookmarksView.addHandlerRender(controlBookmarks);
   recipeView.addHandelRender(controlRecipes);
   recipeView.addHendlerUpdateServings(contolServings);
   recipeView.addhandlerAddBookmark(controlAddBookmark);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView._addHandlerClick(controlPagenation);
+  addRecipeView.addHandlerUpload(controlAddRecipe);
 };
 init();
