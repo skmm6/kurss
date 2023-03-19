@@ -21,8 +21,13 @@ const controlRecipes = async function () {
     const id = window.location.hash.slice(1);
 
     if (!id) return;
+
     // спинер
     recipeView.renderSpinner();
+
+    // 0) обновить результаты что бы отметить выбранный актив
+    resultsView.update(model.getSearchResultsPage());
+
     //1) Загружаем рецепт
     await model.loadRecipe(id);
     //2) Отрисовываем рецепт (рендер)
@@ -62,15 +67,29 @@ const controlPagenation = function (goToPage) {
   paginationView.render(model.state.search);
 };
 
-const contolServings = function () {
+const contolServings = function (newServings) {
   //  Обновить порции в рецепте(state)
-  model.updateServings(6);
+  model.updateServings(newServings);
 
   // Обновить представление рецепта
+  // recipeView.render(model.state.recipe);
+  recipeView.update(model.state.recipe);
+};
+
+const controlAddBookmark = function () {
+  console.log(model.state.recipe.bookmarked);
+  if (!model.state.recipe.bookmarked) model.addBookmark(model.state.recipe);
+  else model.deleteBookmark(model.state.recipe.id);
+
+  console.log(model.state.recipe);
+
+  recipeView.update(model.state.recipe);
 };
 
 const init = function () {
   recipeView.addHandelRender(controlRecipes);
+  recipeView.addHendlerUpdateServings(contolServings);
+  recipeView.addhandlerAddBookmark(controlAddBookmark);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView._addHandlerClick(controlPagenation);
 };
