@@ -4,6 +4,15 @@ import icons from 'url:../../img/icons.svg'; // Parcel 2
 export default class View {
   _data;
 
+  /**
+   * Рендер полученых объектов DOM
+   * @param {Object | Object[]"} data Это данные подллежащие рендеру например рецепт
+   * @param {boolean} [render = true] если оно не верно создайте строку разметки в место рендера
+   * @returns {undefined | string} Возвращается строку если render = false
+   * @this {Object} View объект
+   * @authhor Jonas Schmedtman
+   * @todo Finish
+   */
   render(data, render = true) {
     if (!data || (Array.isArray(data) && data.length === 0))
       return this.renderError();
@@ -74,7 +83,7 @@ export default class View {
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
-  renderMessage(message = this._errorMessage) {
+  renderMessage(message = this._message) {
     const markup = `
             <div class="message">
                 <div>

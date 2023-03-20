@@ -1,4 +1,5 @@
 import * as model from './model.js';
+import { MODAL_CLOSE_SEC } from './config.js';
 import recipeView from './views/recipeView.js';
 import searchView from './views/searchView';
 import resultsView from './views/resultsView.js';
@@ -100,10 +101,35 @@ const controlBookmarks = function () {
   bookmarksView.render(model.state.bookmarks);
 };
 
-const controlAddRecipe = function (newRecipe) {
-  console.log(newRecipe);
+const controlAddRecipe = async function (newRecipe) {
+  try {
+    // спинер ожидания
+    addRecipeView.renderSpinner();
+    //  загрузить новые данные рецепта
+    await model.uploadRecipe(newRecipe);
+    console.log(model.state.recipe);
 
-  //  загрузить новые данные рецепта
+    // render recipe
+    recipeView.render(model.state.recipe);
+
+    // Сообщение об успешном завершении
+    addRecipeView.renderMessage();
+
+    // Рендер закладок
+    bookmarksView.render(model.state.bookmarks);
+
+    // изменить id в URl адресе
+    window.history.pushState(null, '', `#${model.state.recipe.id}`);
+    // window.history.back();
+
+    // закрыть окно формы
+    setTimeout(function () {
+      addRecipeView.toggleWindow();
+    }, MODAL_CLOSE_SEC * 1000);
+  } catch (err) {
+    console.error('⛔', err);
+    addRecipeView.renderError(err.message);
+  }
 };
 
 const init = function () {
